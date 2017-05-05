@@ -1,60 +1,60 @@
 package ContainerWithMostWater;
 
 /**
- * 
+ *
  * @author DC
  *
  *	Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). 
-	n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). 
-	Find two lines, which together with x-axis forms a container, such that the container contains the most water.
-	Note: You may not slant the container.
+n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0).
+Find two lines, which together with x-axis forms a container, such that the container contains the most water.
+Note: You may not slant the container.
  *
  */
 
 /*
  *		|		 |
- * ÏñÊÇ	||		|| ÕâÖÖÇé¿ö£¬ÍâÃæµÄ¸ß£¬ÖĞ¼äµÄµÍ£¬ÍâÃæµÄÊÇÒ»¶¨»á±ÈÀïÃæµÄÈİÁ¿´óµÄ£¬
- * 
- * °ÑË¼Â·Äæ×ªÒ»ÏÂ£¬Èç¹ûÒÔÍâÃæµÄÎª»ù×¼[ÏòÄÚ²àÊÕËõ]£¬ÄÇÏñÉÏÃæÄÇÑùÖĞ¼äµÍµÄÇé¿ö¾Í¿ÉÒÔÖ±½ÓPASSÁË£¬¿ÉÒÔPASSµôºÃ¶à£¬½ÚÊ¡Ê±¼ä
- * 
- * ×Ü½á£ºÏñÕâÖÖÎÊÌâ¾ÍÊÇ¸öÆæÒùÇÉ¼¼£¬ÄãÏëµ½ÁË¾ÍÖ±½Ó×ö³öÀ´ÁË£¬Ê×ÏÈÒªÏëµÄÊÇÈçºÎ½«±È½ÏµÄ´ÎÊı±äĞ¡£¬Ìø¹ıÄÇĞ©Ã»ÓĞÒâÒåµÄ
- * 		ÔÚ¹æÂÉÉÏ´óĞ¡ÊÇ¹æ¶¨ºÃµÄÇé¿ö¡£
+ * åƒæ˜¯	||		|| è¿™ç§æƒ…å†µï¼Œå¤–é¢çš„é«˜ï¼Œä¸­é—´çš„ä½ï¼Œå¤–é¢çš„æ˜¯ä¸€å®šä¼šæ¯”é‡Œé¢çš„å®¹é‡å¤§çš„ï¼Œ
+ *
+ * æŠŠæ€è·¯é€†è½¬ä¸€ä¸‹ï¼Œå¦‚æœä»¥å¤–é¢çš„ä¸ºåŸºå‡†[å‘å†…ä¾§æ”¶ç¼©]ï¼Œé‚£åƒä¸Šé¢é‚£æ ·ä¸­é—´ä½çš„æƒ…å†µå°±å¯ä»¥ç›´æ¥PASSäº†ï¼Œå¯ä»¥PASSæ‰å¥½å¤šï¼ŒèŠ‚çœæ—¶é—´
+ *
+ * æ€»ç»“ï¼šåƒè¿™ç§é—®é¢˜å°±æ˜¯ä¸ªå¥‡æ·«å·§æŠ€ï¼Œä½ æƒ³åˆ°äº†å°±ç›´æ¥åšå‡ºæ¥äº†ï¼Œé¦–å…ˆè¦æƒ³çš„æ˜¯å¦‚ä½•å°†æ¯”è¾ƒçš„æ¬¡æ•°å˜å°ï¼Œè·³è¿‡é‚£äº›æ²¡æœ‰æ„ä¹‰çš„
+ * 		åœ¨è§„å¾‹ä¸Šå¤§å°æ˜¯è§„å®šå¥½çš„æƒ…å†µã€‚
  */
 
 public class Solution {
 
-    public int maxArea(int[] height) {
-        int res = 0;
-        int l = 0, r = height.length - 1;
-        while(l < r){
-        	res = max(res, min(height[l], height[r]) * (r-l));
-        	if(height[l] < height[r]){
-        		int k = l;
-        		//ÕâÒ»²½¾ÍÊÇÔÚpassµôÄÇĞ©±È¶¼²»ÓÃ±È¿Ï¶¨Ğ¡µÄÇé¿ö
-        		while(k < r && height[k] <= height[l]){
-        			k++;
-        		}
-        		l = k;
-        	}
-        	else{
-        		int k = r;
-        		while(k > l && height[k] <= height[r]){
-        			k--;
-        		}
-        		r = k;
-        	}
-        }
-        return res;
-    }
-	
-    public static int max(int a, int b){
-    	return a > b ? a : b;
-    }
-    
-    public static int min(int a, int b){
-    	return a < b ? a : b;
-    }
-    
+	public int maxArea(int[] height) {
+		int res = 0;
+		int l = 0, r = height.length - 1;
+		while(l < r){
+			res = max(res, min(height[l], height[r]) * (r-l));
+			if(height[l] < height[r]){
+				int k = l;
+				//è¿™ä¸€æ­¥å°±æ˜¯åœ¨passæ‰é‚£äº›æ¯”éƒ½ä¸ç”¨æ¯”è‚¯å®šå°çš„æƒ…å†µ
+				while(k < r && height[k] <= height[l]){
+					k++;
+				}
+				l = k;
+			}
+			else{
+				int k = r;
+				while(k > l && height[k] <= height[r]){
+					k--;
+				}
+				r = k;
+			}
+		}
+		return res;
+	}
+
+	public static int max(int a, int b){
+		return a > b ? a : b;
+	}
+
+	public static int min(int a, int b){
+		return a < b ? a : b;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Container With Most Water.");

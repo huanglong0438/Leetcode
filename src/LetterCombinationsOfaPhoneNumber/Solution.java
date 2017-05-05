@@ -7,15 +7,15 @@ import java.util.List;
  * 
  * A mapping of digit to letters (just like on the telephone buttons) is given below.
  * 
- * ½âÌâË¼Â·£º
- * Ë¼Â·ÆäÊµ·Ç³£µÄ¼òµ¥£¬ÉÔÓĞDFS³£Ê¶µÄÈË¶¼»á¿´³ö£¬Õâ¾ÍÊÇÒ»¸öÊ÷µÄ½á¹¹£¬°´ÕÕÉî¶ÈÓÅÏÈËÑË÷µÄË³ĞòÈ¥ËÑË÷Íê¾Í»áÒÀ´ÎµÃµ½¸÷¸ö½á¹û
- * È»¶øÎÒ²»ÊÇÉÔÓĞ³£Ê¶µÄÈË£¬Ã»Ïëµ½ÕâÖÖ·½·¨£¬DFSÊÇ»ùÓÚµİ¹éµÄ£¬µİ¹éÊÇĞèÒª³ö¿ÚµÄ£¬¶øÇÒµİ¹éµÄÊ±ºòĞèÒª½«½á¹û×÷Îª²ÎÊı´«µİ½øÈ¥£¬
- * ÒÔÏÂDFSµÄºËĞÄÎÒ¾õµÃÊÇindexÕâ¸ö²ÎÊı£¬ËüÊÇÕ»µÄÉî¶È£¬Í¨¹ıËüÀ´ÌáĞÑµ±Ç°µÄ·½·¨ÄãÒª×ß¶àÉî£¬ÄãÊÇ²»ÊÇ×ßµ½Í·ÁË
- * ¶øÁíÒ»¸öºËĞÄÊÇforÑ­»·ÀïÃæ¼Óµİ¹éµ÷ÓÃ£¬ÕâÓ¦¸ÃÊÇDFSµÄ±ê×¼ĞÎÊ½£¬ÒÔºóĞèÒªÊ¹ÓÃDFSµÄÊ±ºòÓ¦¸Ã±³ÏÂÕâÖÖÄ£°å
+ * è§£é¢˜æ€è·¯ï¼š
+ * æ€è·¯å…¶å®éå¸¸çš„ç®€å•ï¼Œç¨æœ‰DFSå¸¸è¯†çš„äººéƒ½ä¼šçœ‹å‡ºï¼Œè¿™å°±æ˜¯ä¸€ä¸ªæ ‘çš„ç»“æ„ï¼ŒæŒ‰ç…§æ·±åº¦ä¼˜å…ˆæœç´¢çš„é¡ºåºå»æœç´¢å®Œå°±ä¼šä¾æ¬¡å¾—åˆ°å„ä¸ªç»“æœ
+ * ç„¶è€Œæˆ‘ä¸æ˜¯ç¨æœ‰å¸¸è¯†çš„äººï¼Œæ²¡æƒ³åˆ°è¿™ç§æ–¹æ³•ï¼ŒDFSæ˜¯åŸºäºé€’å½’çš„ï¼Œé€’å½’æ˜¯éœ€è¦å‡ºå£çš„ï¼Œè€Œä¸”é€’å½’çš„æ—¶å€™éœ€è¦å°†ç»“æœä½œä¸ºå‚æ•°ä¼ é€’è¿›å»ï¼Œ
+ * ä»¥ä¸‹DFSçš„æ ¸å¿ƒæˆ‘è§‰å¾—æ˜¯indexè¿™ä¸ªå‚æ•°ï¼Œå®ƒæ˜¯æ ˆçš„æ·±åº¦ï¼Œé€šè¿‡å®ƒæ¥æé†’å½“å‰çš„æ–¹æ³•ä½ è¦èµ°å¤šæ·±ï¼Œä½ æ˜¯ä¸æ˜¯èµ°åˆ°å¤´äº†
+ * è€Œå¦ä¸€ä¸ªæ ¸å¿ƒæ˜¯forå¾ªç¯é‡Œé¢åŠ é€’å½’è°ƒç”¨ï¼Œè¿™åº”è¯¥æ˜¯DFSçš„æ ‡å‡†å½¢å¼ï¼Œä»¥åéœ€è¦ä½¿ç”¨DFSçš„æ—¶å€™åº”è¯¥èƒŒä¸‹è¿™ç§æ¨¡æ¿
  */
 public class Solution {
     public List<String> letterCombinations(String digits) {
-    	List<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<>();
         String map[] = new String[10];
         map[0] = "";
         map[1] = "";
@@ -31,33 +31,33 @@ public class Solution {
         dfsGetStr(digits, 0, middleStr, map, result);
         return result;
     }
-    
+
     /**
-     * dfs»ñµÃÅÅÁĞµÄ·½·¨
-     * @param digits ÊäÈëµÄÊı×Ö£¬ÀıÈç"23"
-     * @param index	ÆäÊµ¾ÍÊÇÕ»µÄÉî¶È£¬ÀıÈçÖ´ĞĞÍê2Ö´ĞĞ3£¬index¾ÍÊÇ1£¬Õ»µÄÉî¶È¾ÍÊÇ2
-     * @param middleStr ÖĞ¼ä±äÁ¿£¬ÓÃÀ´±£´ædfs±éÀú×ßµ½Í·Ö®Ç°µÄÁÙÊ±±äÁ¿
-     * @param map ĞèÒªÓÃµ½µÄ²ÎÊı£¬È·¶¨°´¼ü¶ÔÓ¦µÄÓ¢ÎÄ×ÖÄ¸
-     * @param result ÁÙÊ±±äÁ¿´ÓÊ÷¸ù×ßµ½Ò¶×Ó½Úµã×ßÍêºó¾Í»á·Åµ½ÕâÀï£¬×÷Îª½á¹û£¬ÒòÎªÊ¹ÓÃµİ¹é£¬ËùÒÔ°Ñ½á¹ûÒ²·Åµ½ÁË²ÎÊıÖĞ
+     * dfsè·å¾—æ’åˆ—çš„æ–¹æ³•
+     * @param digits è¾“å…¥çš„æ•°å­—ï¼Œä¾‹å¦‚"23"
+     * @param index	å…¶å®å°±æ˜¯æ ˆçš„æ·±åº¦ï¼Œä¾‹å¦‚æ‰§è¡Œå®Œ2æ‰§è¡Œ3ï¼Œindexå°±æ˜¯1ï¼Œæ ˆçš„æ·±åº¦å°±æ˜¯2
+     * @param middleStr ä¸­é—´å˜é‡ï¼Œç”¨æ¥ä¿å­˜dfséå†èµ°åˆ°å¤´ä¹‹å‰çš„ä¸´æ—¶å˜é‡
+     * @param map éœ€è¦ç”¨åˆ°çš„å‚æ•°ï¼Œç¡®å®šæŒ‰é”®å¯¹åº”çš„è‹±æ–‡å­—æ¯
+     * @param result ä¸´æ—¶å˜é‡ä»æ ‘æ ¹èµ°åˆ°å¶å­èŠ‚ç‚¹èµ°å®Œåå°±ä¼šæ”¾åˆ°è¿™é‡Œï¼Œä½œä¸ºç»“æœï¼Œå› ä¸ºä½¿ç”¨é€’å½’ï¼Œæ‰€ä»¥æŠŠç»“æœä¹Ÿæ”¾åˆ°äº†å‚æ•°ä¸­
      */
     private void dfsGetStr(String digits, int index, char[] middleStr, String[] map, List<String> result){
-    	if(digits.length() == 0){
-    		return;
-    	}
-    	if(index == digits.length()){
-    		result.add(new String(middleStr));
-    		return;
-    	}
-    	char curDigit = digits.charAt(index);
-    	for(int i = 0; i < map[curDigit - '0'].length(); i++){
-    		middleStr[index] = map[curDigit - '0'].charAt(i);
-    		dfsGetStr(digits, index+1, middleStr, map, result);
-    	}
+        if(digits.length() == 0){
+            return;
+        }
+        if(index == digits.length()){
+            result.add(new String(middleStr));
+            return;
+        }
+        char curDigit = digits.charAt(index);
+        for(int i = 0; i < map[curDigit - '0'].length(); i++){
+            middleStr[index] = map[curDigit - '0'].charAt(i);
+            dfsGetStr(digits, index+1, middleStr, map, result);
+        }
     }
-    
+
     public static void main(String[] args) {
-		Solution solution = new Solution();
-		List<String> result = solution.letterCombinations("23");
-		System.out.println(result);
-	}
+        Solution solution = new Solution();
+        List<String> result = solution.letterCombinations("23");
+        System.out.println(result);
+    }
 }

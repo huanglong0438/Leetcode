@@ -1,44 +1,44 @@
 package IntegerToRoman;
 
 /**
- * 
-	Given an integer, convert it to a roman numeral.
+ *
+ Given an integer, convert it to a roman numeral.
 
-	Input is guaranteed to be within the range from 1 to 3999.
-	
+ Input is guaranteed to be within the range from 1 to 3999.
+
  * @author DC
  *
  */
 
 /*
- * ×Ü¸Ğ¾õÕâÌâÎÒ×ö¹ı°¡¡£¡£¡£
- * IÊÇ1£¬VÊÇ5£¬XÊÇ10£¬LÊÇ50£¬CÊÇ100£¬DÊÇ500£¬MÊÇ1000
+ * æ€»æ„Ÿè§‰è¿™é¢˜æˆ‘åšè¿‡å•Šã€‚ã€‚ã€‚
+ * Iæ˜¯1ï¼ŒVæ˜¯5ï¼ŒXæ˜¯10ï¼ŒLæ˜¯50ï¼ŒCæ˜¯100ï¼ŒDæ˜¯500ï¼ŒMæ˜¯1000
  * 1234 MCCXXXIV
- * 
- * Èç¹ûÊÇÎÒ×Ô¼º×öµÄ»°¿Ï¶¨¾ÍÓÃ±¿·½·¨ÁË£¬[1,4),4,(4,9),9 ºÍ ¸öÊ®°ÙÇ§Î»½øĞĞ×éºÏ£¬Ò»´ó¶Ñif..else..£¨ÕæÊÇ´À¡£¡££©
- * µ«ÊÇÍøÉÏÕÒµ½ÁËºÜ¶àÈËµÄ·½·¨£¬´óÖÂÉÏ¶¼ÊÇ°ÑÂŞÂíÊı×Ö·Åµ½Ò»¸öÊı×éÀïÃæ£¬ºÍ°¢À­²®Êı×Ö¶ÔÆë·ÅÖÃ
- * ±ÈÈçÏÂÃæµÄ·½·¨£¬ÏñÏûÏûÀÖÒ»Ñù£¬´Ó¸ßµ½µÍ£¬Ò»²ãÒ»²ãÏûµô£¬ÕâÒ²ËãÊÇÂŞÂíÊı×ÖµÄÒ»ÖÖ¹æÂÉ°É£¬ËäÈ»ËüµÄ5ºÍ4´¦ÀíµÄºÜµ°ÌÛ
- * µ«ÊÇÔÚÏÂÃæµÄ·½·¨ÖĞ¼òµ¥´Ö±©µÄ½â¾öÁË£¨ÎÒtm¹ÜÄã4ÊÇIV»¹ÊÇIIII£¬ÎÒÖ±½ÓÍùÏÂÏû¾ÍºÃÁË£¡£©
- * ×Ü½á£ºÕâÖÖ´Ó¸ßµ½µÍÍùÏÂÏûµÄ·½·¨ÔÚÊı×Ö×ª»»ÖĞ·Ç³£¼òµ¥´Ö±©£¬¿ÉÒÔÑ§Ï°Ò»¸ö¡£
+ *
+ * å¦‚æœæ˜¯æˆ‘è‡ªå·±åšçš„è¯è‚¯å®šå°±ç”¨ç¬¨æ–¹æ³•äº†ï¼Œ[1,4),4,(4,9),9 å’Œ ä¸ªåç™¾åƒä½è¿›è¡Œç»„åˆï¼Œä¸€å¤§å †if..else..ï¼ˆçœŸæ˜¯è ¢ã€‚ã€‚ï¼‰
+ * ä½†æ˜¯ç½‘ä¸Šæ‰¾åˆ°äº†å¾ˆå¤šäººçš„æ–¹æ³•ï¼Œå¤§è‡´ä¸Šéƒ½æ˜¯æŠŠç½—é©¬æ•°å­—æ”¾åˆ°ä¸€ä¸ªæ•°ç»„é‡Œé¢ï¼Œå’Œé˜¿æ‹‰ä¼¯æ•°å­—å¯¹é½æ”¾ç½®
+ * æ¯”å¦‚ä¸‹é¢çš„æ–¹æ³•ï¼Œåƒæ¶ˆæ¶ˆä¹ä¸€æ ·ï¼Œä»é«˜åˆ°ä½ï¼Œä¸€å±‚ä¸€å±‚æ¶ˆæ‰ï¼Œè¿™ä¹Ÿç®—æ˜¯ç½—é©¬æ•°å­—çš„ä¸€ç§è§„å¾‹å§ï¼Œè™½ç„¶å®ƒçš„5å’Œ4å¤„ç†çš„å¾ˆè›‹ç–¼
+ * ä½†æ˜¯åœ¨ä¸‹é¢çš„æ–¹æ³•ä¸­ç®€å•ç²—æš´çš„è§£å†³äº†ï¼ˆæˆ‘tmç®¡ä½ 4æ˜¯IVè¿˜æ˜¯IIIIï¼Œæˆ‘ç›´æ¥å¾€ä¸‹æ¶ˆå°±å¥½äº†ï¼ï¼‰
+ * æ€»ç»“ï¼šè¿™ç§ä»é«˜åˆ°ä½å¾€ä¸‹æ¶ˆçš„æ–¹æ³•åœ¨æ•°å­—è½¬æ¢ä¸­éå¸¸ç®€å•ç²—æš´ï¼Œå¯ä»¥å­¦ä¹ ä¸€ä¸ªã€‚
  */
 
 
 public class Solution {
 
-    public String intToRoman(int num) {
-    	//eg.1234
-    	int values[] = 		{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-    	String numerals[] = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
-    	StringBuilder result = new StringBuilder();
-    	for(int i = 0; i < values.length; i++){
-    		while(num >= values[i]){
-    			num -= values[i];
-    			result.append(numerals[i]);
-    		}
-    	}
-    	return result.toString();
-    }
-	
+	public String intToRoman(int num) {
+		//eg.1234
+		int values[] = 		{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+		String numerals[] = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+		StringBuilder result = new StringBuilder();
+		for(int i = 0; i < values.length; i++){
+			while(num >= values[i]){
+				num -= values[i];
+				result.append(numerals[i]);
+			}
+		}
+		return result.toString();
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Integer to Roman.");

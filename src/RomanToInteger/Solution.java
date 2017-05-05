@@ -1,59 +1,59 @@
 package RomanToInteger;
 /**
- * 
+ *
  * @author DC
 
-	Given a roman numeral, convert it to an integer.
-	
-	Input is guaranteed to be within the range from 1 to 3999.
-	
+Given a roman numeral, convert it to an integer.
+
+Input is guaranteed to be within the range from 1 to 3999.
+
  *
  */
 
 /*
-	Ïê¼ûIntegerToRoman
-	¾ßÌåµÄÊµÏÖ»¹ÊÇ¡°ÏòÇ°¿´¡±£¬ÎÒÔ­ÏÈµÄÏë·¨ÊÇ°Ñ5,10,50,100...ÕâÑùµÄÊıÒ»¸ö¸ö·ÖÇé¿öß£
-	ÏÖÔÚÏëÏë»¹ÊÇnaive£¬Ëã·¨µÄ±¾ÖÊ¾ÍÊÇÕÒµ½¹æÂÉÈ»ºóÈÃÊéĞ´µÄ´úÂë¸ü¼ò½à£¬ÕâĞ©Çé¿ö¶¼ÓĞÒ»¸ö¹²Í¬µã
-	ÄÇ¾ÍÊÇ4ÊÇIVÇ°Ò»¸ö±ÈºóÒ»¸öÒªĞ¡£¬6ÊÇVIÇ°Ò»¸ö±ÈºóÒ»¸öÒª´ó
-	Ö»ÒªÓöµ½Ç°Ò»¸ö±ÈºóÒ»¸öÒªĞ¡µÄÇé¿ö£¬¾ÍËµÃ÷Òª½øĞĞ¼õ·¨£¬·ñÔò¶¼ÊÇ¼Ó·¨
+	è¯¦è§IntegerToRoman
+	å…·ä½“çš„å®ç°è¿˜æ˜¯â€œå‘å‰çœ‹â€ï¼Œæˆ‘åŸå…ˆçš„æƒ³æ³•æ˜¯æŠŠ5,10,50,100...è¿™æ ·çš„æ•°ä¸€ä¸ªä¸ªåˆ†æƒ…å†µæ’¸
+	ç°åœ¨æƒ³æƒ³è¿˜æ˜¯naiveï¼Œç®—æ³•çš„æœ¬è´¨å°±æ˜¯æ‰¾åˆ°è§„å¾‹ç„¶åè®©ä¹¦å†™çš„ä»£ç æ›´ç®€æ´ï¼Œè¿™äº›æƒ…å†µéƒ½æœ‰ä¸€ä¸ªå…±åŒç‚¹
+	é‚£å°±æ˜¯4æ˜¯IVå‰ä¸€ä¸ªæ¯”åä¸€ä¸ªè¦å°ï¼Œ6æ˜¯VIå‰ä¸€ä¸ªæ¯”åä¸€ä¸ªè¦å¤§
+	åªè¦é‡åˆ°å‰ä¸€ä¸ªæ¯”åä¸€ä¸ªè¦å°çš„æƒ…å†µï¼Œå°±è¯´æ˜è¦è¿›è¡Œå‡æ³•ï¼Œå¦åˆ™éƒ½æ˜¯åŠ æ³•
 	eg.XXXIV = 34
  */
 
 public class Solution {
-	
+
     public int romanToInt(String s) {
-    	int result = 0;
+        int result = 0;
         for(int i = 0; i < s.length(); i++){
-        	int cur = toNumber(s.charAt(i));
-        	//Èç¹ûÃ»µ½Í·£¬ÇÒºóÒ»¸ö±ÈÇ°Ò»¸ö´ó£¬ËµÃ÷Òª×ö¼õ·¨
-        	if(i + 1 < s.length() && toNumber(s.charAt(i+1)) > cur){
-        		result += toNumber(s.charAt(i+1)) - cur;
-        		i++;
-        	}
-        	else{
-        		result += cur;
-        	}
+            int cur = toNumber(s.charAt(i));
+            //å¦‚æœæ²¡åˆ°å¤´ï¼Œä¸”åä¸€ä¸ªæ¯”å‰ä¸€ä¸ªå¤§ï¼Œè¯´æ˜è¦åšå‡æ³•
+            if(i + 1 < s.length() && toNumber(s.charAt(i+1)) > cur){
+                result += toNumber(s.charAt(i+1)) - cur;
+                i++;
+            }
+            else{
+                result += cur;
+            }
         }
         return result;
     }
-    
-    private int toNumber(char ch) {  
-        switch (ch) {  
-            case 'I': return 1;  
-            case 'V': return 5;  
-            case 'X': return 10;  
-            case 'L': return 50;  
-            case 'C': return 100;  
-            case 'D': return 500;  
-            case 'M': return 1000;  
-        }  
-        return 0;  
-    }  
-    
-	public static void main(String[] args) {
-		String roman = "MCMLXXVI"; // 1976
-		Solution solution = new Solution();
-		System.out.println(roman + " is " +solution.romanToInt(roman));
-	}
+
+    private int toNumber(char ch) {
+        switch (ch) {
+            case 'I': return 1;
+            case 'V': return 5;
+            case 'X': return 10;
+            case 'L': return 50;
+            case 'C': return 100;
+            case 'D': return 500;
+            case 'M': return 1000;
+        }
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        String roman = "MCMLXXVI"; // 1976
+        Solution solution = new Solution();
+        System.out.println(roman + " is " +solution.romanToInt(roman));
+    }
 
 }

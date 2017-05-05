@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 
+ *
  * @author DC
  *
  *Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? 
@@ -13,79 +13,79 @@ import java.util.List;
  *
  */
 /*
- 	Çó3SumÊÇÒ»ÏµÁĞµÄÎÊÌâ£¬K SumµÄÎÊÌâ¡£
- 	2Sum¾ÍÊÇ×î»ù±¾µÄÇé¿ö£¬ÏÈÅÅĞò£¬È»ºó´ÓÍ·-> ´ÓÎ²<-¶Ô×Å×ß£¬ÕÒµ½ºÍÎª0µÄÒ»¶Ô£¨×¢Òâ×ßµÄÊ±ºòºÍÉÏÒ»Î»±È½ÏÒ»ÏÂ£¬¿ÉÒÔ·ÀÖ¹ÖØ¸´µÄÇé¿ö·¢Éú£©
- 	3Sum¾ÍĞèÒª¶àÒ»¸ö¿ØÖÆ£¬°´×¡Ò»¸öÎ»ÖÃ²»¶¯£¬È»ºóÈÃºóÃæµÄ²¿·Ö½øĞĞ2Sum£¨×¢ÒâÕâÀïÊÇÈÃ{ºóÃæ}µÄ²¿·Ö½øĞĞ2Sum£¬¶ø²»´øÉÏÇ°Ãæ£¬¿ÉÒÔ·ÀÖ¹ÖØ¸´£©
+ 	æ±‚3Sumæ˜¯ä¸€ç³»åˆ—çš„é—®é¢˜ï¼ŒK Sumçš„é—®é¢˜ã€‚
+ 	2Sumå°±æ˜¯æœ€åŸºæœ¬çš„æƒ…å†µï¼Œå…ˆæ’åºï¼Œç„¶åä»å¤´-> ä»å°¾<-å¯¹ç€èµ°ï¼Œæ‰¾åˆ°å’Œä¸º0çš„ä¸€å¯¹ï¼ˆæ³¨æ„èµ°çš„æ—¶å€™å’Œä¸Šä¸€ä½æ¯”è¾ƒä¸€ä¸‹ï¼Œå¯ä»¥é˜²æ­¢é‡å¤çš„æƒ…å†µå‘ç”Ÿï¼‰
+ 	3Sumå°±éœ€è¦å¤šä¸€ä¸ªæ§åˆ¶ï¼ŒæŒ‰ä½ä¸€ä¸ªä½ç½®ä¸åŠ¨ï¼Œç„¶åè®©åé¢çš„éƒ¨åˆ†è¿›è¡Œ2Sumï¼ˆæ³¨æ„è¿™é‡Œæ˜¯è®©{åé¢}çš„éƒ¨åˆ†è¿›è¡Œ2Sumï¼Œè€Œä¸å¸¦ä¸Šå‰é¢ï¼Œå¯ä»¥é˜²æ­¢é‡å¤ï¼‰
  */
 
 public class Solution {
-	
-    public List<List<Integer>> threeSum(int[] nums) {
-    	List<List<Integer>> result = new ArrayList<List<Integer>>();
-        sort(nums, 0, nums.length - 1);
-        for(int i = 0; i < nums.length; i++){
-        	int begin = i + 1;
-        	int end = nums.length - 1;
-        	if(i > 0 && nums[i] == nums[i-1])
-        		continue;
-        	while(begin < end){        		
-        		if(begin > i + 1 && nums[begin] == nums[begin - 1]){
-        			begin++;
-        			continue;
-        		}
-        		if(end < nums.length - 1 && nums[end] == nums[end + 1]){
-        			end--;
-        			continue;
-        		}
-        		int sum = nums[i] + nums[begin] + nums[end];
-        		if(sum < 0){
-        			begin++;
-        		}
-        		else if(sum > 0){
-        			end--;
-        		}
-        		else{
-        			List<Integer> triple = new ArrayList<>();
-        			triple.add(nums[i]);
-        			triple.add(nums[begin]);
-        			triple.add(nums[end]);
-        			result.add(triple);
-        			begin++;
-        		}
-        	}
-        }
-        return result;
-    }
 
-    private void sort(int[] nums, int p, int r){
-    	int q;
-    	if(p<r){
-    		q = partition(nums, p, r);
-    		sort(nums, p, q-1);
-    		sort(nums, q+1, r);
-    	}
-    }
-    
-    private int partition(int[] nums, int p, int r){
-    	int x = nums[r];
-    	int i = p - 1;
-    	int j;
-    	for(j = p; j <= r - 1; j++){
-    		if(nums[j] < x){
-    			i++;
-    			int temp = nums[i];
-    			nums[i] = nums[j];
-    			nums[j] = temp;
-    		}
-    	}
-    	
-    	int temp = nums[i+1];
-    	nums[i+1] = nums[r];
-    	nums[r] = temp;
-    	
-    	return i+1;
-    }
-    
+	public List<List<Integer>> threeSum(int[] nums) {
+		List<List<Integer>> result = new ArrayList<List<Integer>>();
+		sort(nums, 0, nums.length - 1);
+		for(int i = 0; i < nums.length; i++){
+			int begin = i + 1;
+			int end = nums.length - 1;
+			if(i > 0 && nums[i] == nums[i-1])
+				continue;
+			while(begin < end){
+				if(begin > i + 1 && nums[begin] == nums[begin - 1]){
+					begin++;
+					continue;
+				}
+				if(end < nums.length - 1 && nums[end] == nums[end + 1]){
+					end--;
+					continue;
+				}
+				int sum = nums[i] + nums[begin] + nums[end];
+				if(sum < 0){
+					begin++;
+				}
+				else if(sum > 0){
+					end--;
+				}
+				else{
+					List<Integer> triple = new ArrayList<>();
+					triple.add(nums[i]);
+					triple.add(nums[begin]);
+					triple.add(nums[end]);
+					result.add(triple);
+					begin++;
+				}
+			}
+		}
+		return result;
+	}
+
+	private void sort(int[] nums, int p, int r){
+		int q;
+		if(p<r){
+			q = partition(nums, p, r);
+			sort(nums, p, q-1);
+			sort(nums, q+1, r);
+		}
+	}
+
+	private int partition(int[] nums, int p, int r){
+		int x = nums[r];
+		int i = p - 1;
+		int j;
+		for(j = p; j <= r - 1; j++){
+			if(nums[j] < x){
+				i++;
+				int temp = nums[i];
+				nums[i] = nums[j];
+				nums[j] = temp;
+			}
+		}
+
+		int temp = nums[i+1];
+		nums[i+1] = nums[r];
+		nums[r] = temp;
+
+		return i+1;
+	}
+
 	public static void main(String[] args) {
 		//sorted -4 -1 -1 0 1 2
 		int nums[] = { -1, 0, 1, 2, -1, -4 };

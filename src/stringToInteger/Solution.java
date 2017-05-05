@@ -7,38 +7,38 @@ public class Solution {
         boolean outOfBounds = false;
         str = trim(str);
         if(str == null){
-        	return 0;
+            return 0;
         }
         for(int i = str.length() - 1; i >= 0; i--){
             char c = str.charAt(i);
-            //·ÇÁãÎ»ÖÃ·ÇÊı×ÖµÄÇé¿ö
+            //éé›¶ä½ç½®éæ•°å­—çš„æƒ…å†µ
             if(i > 0 && (c < '0' || c > '9')){
                 return 0;
             }
-            //ÁãÎ»ÖÃ·ÇÊı×ÖµÄÇé¿ö
-            //¸ºÊıµÄÇé¿ö
+            //é›¶ä½ç½®éæ•°å­—çš„æƒ…å†µ
+            //è´Ÿæ•°çš„æƒ…å†µ
             if(i == 0 && c == '-'){
-                //Èç¹û¾ÍÒ»¸ö¸ººÅ£¬É¶¶¼Ã»ÓĞ
+                //å¦‚æœå°±ä¸€ä¸ªè´Ÿå·ï¼Œå•¥éƒ½æ²¡æœ‰
                 if(str.length() == 1){
                     return 0;
                 }
-                //ÅĞ¶ÏÊÇ·ñ³ö½ç
+                //åˆ¤æ–­æ˜¯å¦å‡ºç•Œ
                 if(outOfBounds){
-                    //ÕıÊı³ö½çÁË¶ÔÓÚ¸ººÅÀ´ËµÖ»ÄÜÓĞÁ½ÖÖÇé¿ö£¬
-                    //µÚÒ»£¬¼Ó¸ººÅºóÒ²³ö½çÁË£¬ÄÇ¾Í·µ»ØMIN_VALUE£¬
-                    //µÚ¶ş£¬¼Ó·ûºÅºóÃ»³ö½ç£¬ÄÇ¾Í¸ÕºÃ²ÈÏß£¬ÊÇMIN_VALUE£¬ÄÇÒ²ÊÇ·µ»ØMIN_VALUE
+                    //æ­£æ•°å‡ºç•Œäº†å¯¹äºè´Ÿå·æ¥è¯´åªèƒ½æœ‰ä¸¤ç§æƒ…å†µï¼Œ
+                    //ç¬¬ä¸€ï¼ŒåŠ è´Ÿå·åä¹Ÿå‡ºç•Œäº†ï¼Œé‚£å°±è¿”å›MIN_VALUEï¼Œ
+                    //ç¬¬äºŒï¼ŒåŠ ç¬¦å·åæ²¡å‡ºç•Œï¼Œé‚£å°±åˆšå¥½è¸©çº¿ï¼Œæ˜¯MIN_VALUEï¼Œé‚£ä¹Ÿæ˜¯è¿”å›MIN_VALUE
                     return Integer.MIN_VALUE;
                 }
                 return (int) -result;
             }
-            //»¹TMÓĞÕıºÅµÄÇé¿ö£¬²İ
+            //è¿˜TMæœ‰æ­£å·çš„æƒ…å†µï¼Œè‰
             if(i == 0 && c == '+'){
                 if(str.length() == 1){
                     return 0;
                 }
                 return (int) result;
             }
-            //Èç¹ûµÚ0¸öÎ»ÖÃÊÇ·ÇÊı×Ö
+            //å¦‚æœç¬¬0ä¸ªä½ç½®æ˜¯éæ•°å­—
             if(i == 0 && (c < '0' || c > '9')){
                 if(c == ' '){
                     c = '0';
@@ -60,7 +60,7 @@ public class Solution {
         }
         return (int) result;
     }
-    
+
     public String trim(String str){
         String result = "";
         for(int i = 0; i < str.length(); i++){
@@ -70,18 +70,18 @@ public class Solution {
             }
             if(c == '+' || c == '-'){
                 if(i + 1 == str.length()){
-                	return null;
+                    return null;
                 }
                 if(str.charAt(i+1) < '0' || str.charAt(i+1) > '9'){
-                	return null;
+                    return null;
                 }
                 result += c;
                 continue;
             }
             if(c >= '0' && c <= '9'){
-            	result += c;
+                result += c;
                 if(i+1 < str.length() && (str.charAt(i+1) < '0' || str.charAt(i+1) > '9')){
-                	return result;
+                    return result;
                 }
             }
             else{
@@ -90,11 +90,11 @@ public class Solution {
         }
         return result;
     }
-    
+
     public static void main(String[] args){
-    	Solution sol = new Solution();
-    	                                //2147483647
-    	System.out.println(sol.myAtoi("    10522545459"));
+        Solution sol = new Solution();
+        //2147483647
+        System.out.println(sol.myAtoi("    10522545459"));
     }
 
 }

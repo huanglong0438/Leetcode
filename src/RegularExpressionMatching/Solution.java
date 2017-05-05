@@ -5,80 +5,80 @@ import java.util.List;
 
 
 /**
- * 
+ *
  * @author DC
  *
  *
-	'.' Matches any single character.
-	'*' Matches zero or more of the preceding element.
-	
-	The matching should cover the entire input string (not partial).
-	
-	The function prototype should be:
-	bool isMatch(const char *s, const char *p)
-	
-	Some examples:
-	isMatch("aa","a") ¡ú false
-	isMatch("aa","aa") ¡ú true
-	isMatch("aaa","aa") ¡ú false
-	isMatch("aa", "a*") ¡ú true
-	isMatch("aa", ".*") ¡ú true
-	isMatch("ab", ".*") ¡ú true
-	isMatch("aab", "c*a*b") ¡ú true
+'.' Matches any single character.
+'*' Matches zero or more of the preceding element.
+
+The matching should cover the entire input string (not partial).
+
+The function prototype should be:
+bool isMatch(const char *s, const char *p)
+
+Some examples:
+isMatch("aa","a") â†’ false
+isMatch("aa","aa") â†’ true
+isMatch("aaa","aa") â†’ false
+isMatch("aa", "a*") â†’ true
+isMatch("aa", ".*") â†’ true
+isMatch("ab", ".*") â†’ true
+isMatch("aab", "c*a*b") â†’ true
  */
 
 /*
- *  ³öÌâµÄÕâ¸öÉ§ÈË£¬Õâ¸öÌâÓÐºÃ¼¸¸ö¿Ó
- *  Ê×ÏÈÊÇËü²»Ò»¶¨ÊÇ¹æ¹æ¾Ø¾ØµÄa*£¬¶øÊÇ»á³öÏÖa*aÕâÖÖÃ÷ÏÔÄÜ¼ò»¯µÄ¸ñÊ½
- *  Æä´ÎÊÇ×îºÃÓÐ»Ø¹öµÄ»úÖÆ£¬ÒòÎªÈçÏÂ£º
+ *  å‡ºé¢˜çš„è¿™ä¸ªéªšäººï¼Œè¿™ä¸ªé¢˜æœ‰å¥½å‡ ä¸ªå‘
+ *  é¦–å…ˆæ˜¯å®ƒä¸ä¸€å®šæ˜¯è§„è§„çŸ©çŸ©çš„a*ï¼Œè€Œæ˜¯ä¼šå‡ºçŽ°a*aè¿™ç§æ˜Žæ˜¾èƒ½ç®€åŒ–çš„æ ¼å¼
+ *  å…¶æ¬¡æ˜¯æœ€å¥½æœ‰å›žæ»šçš„æœºåˆ¶ï¼Œå› ä¸ºå¦‚ä¸‹ï¼š
 	Input: "aaa"
 		   "a*a"
 	Output: false
-	Expected: true 
-	
-	Èç¹ûÄãË³×ÅÆ¥ÅäÏÂÀ´»á·¢ÏÖa*¾ÍÒÑ¾­¸úaaaÆ´ÍêÁË£¬Ê£ÏÂÒ»¸öaÆ¥ÅäÊ§°Ü£¬GG
-	ËùÒÔÓöµ½*Òª¡°ÏòÇ°¿´¡±£¬ÏòÇ°¿´ÊÇºÃ¶àËã·¨Ìâ¾­³£ÓÃµ½µÄ¼¼ÇÉ
-	
-	Æä´Î£¬aÆ¥Åäµ½a*ºó»áÏòÇ°¿´£¬È»ºóaaa¾Í»áºÍºóÃæÒ»¸öaÆ¥Åä£¬Ò²»áGG£¬ÕâÊ±ºòÆäÊµÃ»ÓÐ´í£¬
-	ËùÒÔ»¹ÐèÒª¡°»Ø¹ö¡±µÄ»úÖÆ£¬
-	¼´aaaÆ¥ÅäaÊ§°Üºó£¬ÆäÊµËü²¢²»ÊÇÕæµÄÊ§°ÜÁË£¬ÐèÒª»Ø¹öµ½ºÍ*Æ¥ÅäµÄÑ­»·ÄÇÀï£¬È»ºóÏÂÒ»¸öÑ­»·±ä³Éaa
-	ÔÙ±ä³Éa£¬ÔÙºÍ*ºóÃæµÄ²¿·ÖÆ¥Åä¾ÍokÁË
-	
-	×Ü½á£ºÁ½¸öÖØµã£¬Ò»¸öÊÇ¡°ÏòÇ°¿´¡±£¬Ò»¸öÊÇ»Ø¹ö¡£ÏòÇ°¿´Í¨¹ýp[i+1]½â¾ö£¬»Ø¹öÍ¨¹ý¼ÇÂ¼»Ø¹öÇ°µÄÖµ»òÕßµÝ¹é½â¾ö£¬
-	×îºÃÊÇµÝ¹é£¬Àí½â·½±ã£¬ËäÈ»µü´úºÃÏñÐÔÄÜ»áºÃÐ©£¬GTMDÐÔÄÜ£¡µÝ¹é£¡ÎÒ²»¹Ü£¬¾ÍµÝ¹éÁË£¡
+	Expected: true
+
+	å¦‚æžœä½ é¡ºç€åŒ¹é…ä¸‹æ¥ä¼šå‘çŽ°a*å°±å·²ç»è·Ÿaaaæ‹¼å®Œäº†ï¼Œå‰©ä¸‹ä¸€ä¸ªaåŒ¹é…å¤±è´¥ï¼ŒGG
+	æ‰€ä»¥é‡åˆ°*è¦â€œå‘å‰çœ‹â€ï¼Œå‘å‰çœ‹æ˜¯å¥½å¤šç®—æ³•é¢˜ç»å¸¸ç”¨åˆ°çš„æŠ€å·§
+
+	å…¶æ¬¡ï¼ŒaåŒ¹é…åˆ°a*åŽä¼šå‘å‰çœ‹ï¼Œç„¶åŽaaaå°±ä¼šå’ŒåŽé¢ä¸€ä¸ªaåŒ¹é…ï¼Œä¹Ÿä¼šGGï¼Œè¿™æ—¶å€™å…¶å®žæ²¡æœ‰é”™ï¼Œ
+	æ‰€ä»¥è¿˜éœ€è¦â€œå›žæ»šâ€çš„æœºåˆ¶ï¼Œ
+	å³aaaåŒ¹é…aå¤±è´¥åŽï¼Œå…¶å®žå®ƒå¹¶ä¸æ˜¯çœŸçš„å¤±è´¥äº†ï¼Œéœ€è¦å›žæ»šåˆ°å’Œ*åŒ¹é…çš„å¾ªçŽ¯é‚£é‡Œï¼Œç„¶åŽä¸‹ä¸€ä¸ªå¾ªçŽ¯å˜æˆaa
+	å†å˜æˆaï¼Œå†å’Œ*åŽé¢çš„éƒ¨åˆ†åŒ¹é…å°±okäº†
+
+	æ€»ç»“ï¼šä¸¤ä¸ªé‡ç‚¹ï¼Œä¸€ä¸ªæ˜¯â€œå‘å‰çœ‹â€ï¼Œä¸€ä¸ªæ˜¯å›žæ»šã€‚å‘å‰çœ‹é€šè¿‡p[i+1]è§£å†³ï¼Œå›žæ»šé€šè¿‡è®°å½•å›žæ»šå‰çš„å€¼æˆ–è€…é€’å½’è§£å†³ï¼Œ
+	æœ€å¥½æ˜¯é€’å½’ï¼Œç†è§£æ–¹ä¾¿ï¼Œè™½ç„¶è¿­ä»£å¥½åƒæ€§èƒ½ä¼šå¥½äº›ï¼ŒGTMDæ€§èƒ½ï¼é€’å½’ï¼æˆ‘ä¸ç®¡ï¼Œå°±é€’å½’äº†ï¼
  */
 
 
 
 public class Solution {
 
-    public boolean isMatch(String s, String p) {
-    	return isMatch(s, p, 0, 0);
-    }
-	
-    public boolean isMatch(String s, String p, int i, int j){
-    	//µÝ¹éµÄ³ö¿Ú,Ô½½çµÄÇé¿ö¶¼ÈÓµ½ÕâÀï
-    	if(j >= p.length())
-    		return i >= s.length();
-    	//Ö»ÒªpµÄÏÂÒ»Î»²»ÊÇ*µÄËùÓÐÇé¿ö£¨»òÕßpµÄÏÂÒ»Î»²»ÊÇ*£¬»òÕßj+1¸É´àÔ½½çÁË£©
-    	if(j+1 >= p.length() || p.charAt(j+1) != '*'){
-    		if(i < s.length() && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.'))
-    			return isMatch(s, p, i+1, j+1);
-    		else
-    			return false;
-    	}
-    	//pµÄÏÂÒ»Î»ÊÇ*µÄÇé¿ö
-    	else{
-    		while(i < s.length() && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.')){
-    			if(isMatch(s, p, i, j+2))
-    				return true;
-    			i++;
-    		}
-    		return isMatch(s, p, i, j+2);
-    	}
-    }
-    
-	
+	public boolean isMatch(String s, String p) {
+		return isMatch(s, p, 0, 0);
+	}
+
+	public boolean isMatch(String s, String p, int i, int j){
+		//é€’å½’çš„å‡ºå£,è¶Šç•Œçš„æƒ…å†µéƒ½æ‰”åˆ°è¿™é‡Œ
+		if(j >= p.length())
+			return i >= s.length();
+		//åªè¦pçš„ä¸‹ä¸€ä½ä¸æ˜¯*çš„æ‰€æœ‰æƒ…å†µï¼ˆæˆ–è€…pçš„ä¸‹ä¸€ä½ä¸æ˜¯*ï¼Œæˆ–è€…j+1å¹²è„†è¶Šç•Œäº†ï¼‰
+		if(j+1 >= p.length() || p.charAt(j+1) != '*'){
+			if(i < s.length() && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.'))
+				return isMatch(s, p, i+1, j+1);
+			else
+				return false;
+		}
+		//pçš„ä¸‹ä¸€ä½æ˜¯*çš„æƒ…å†µ
+		else{
+			while(i < s.length() && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.')){
+				if(isMatch(s, p, i, j+2))
+					return true;
+				i++;
+			}
+			return isMatch(s, p, i, j+2);
+		}
+	}
+
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Solution solution = new Solution();

@@ -11,49 +11,49 @@ import java.util.Arrays;
  */
 
 /*
- * ½âÌâË¼Â·:ºÍÉÏÒ»¸ö3SumµÄ½â·¨Ò»Ñù£¬Ö»²»¹ıÇ°Ò»¸öÊÇ±È½ÏsumÊÇ·ñÎª0£¬ÕâÀïÊÇ¼ÇÂ¼µ±Ç°sumµÄÖµ£¬Èç¹û¸ü½Ó½üÁË¾Í¸üĞÂËü
- * ¾ßÌå¾ÍÊÇ£¬ÏÈÅÅĞòÊı×é£¬È»ºó°´×¡Ò»¸öÊı£¬Ê£ÏÂÁ½¸öÊıÒ»¸ö´ÓÇ°Ïòºó£¬Ò»¸ö´ÓºóÏòÇ°×ß£¬
- * Èç¹ûsumµÄÖµĞ¡ÓÚtargetÁË£¬ÔòÇ°ÃæµÄÏòºóÒ»²½£¬Èç¹ûsumµÄÖµ´óÁË£¬ÔòºóÃæµÄÏòÇ°£¬Èç¹ûsumÖµ²»´ó²»Ğ¡¸ÕºÃµÈÓÚtarget£¬ÔòÖ±½Ó·µ»Ø½á¹ûsum
- * ²»ÂÛÊÇÏòÇ°×ß»¹ÊÇÏòºó×ß£¬Èç¹û·¢ÏÖ¼ÇÂ¼µÄclosestDist¸üĞ¡ÁË£¬¾ÍÁ¢¿Ì¸üĞÂ½á¹û£¬×îºóÔÚÕû¸öÑ­»·½áÊøºó·µ»Øresult
+ * è§£é¢˜æ€è·¯:å’Œä¸Šä¸€ä¸ª3Sumçš„è§£æ³•ä¸€æ ·ï¼Œåªä¸è¿‡å‰ä¸€ä¸ªæ˜¯æ¯”è¾ƒsumæ˜¯å¦ä¸º0ï¼Œè¿™é‡Œæ˜¯è®°å½•å½“å‰sumçš„å€¼ï¼Œå¦‚æœæ›´æ¥è¿‘äº†å°±æ›´æ–°å®ƒ
+ * å…·ä½“å°±æ˜¯ï¼Œå…ˆæ’åºæ•°ç»„ï¼Œç„¶åæŒ‰ä½ä¸€ä¸ªæ•°ï¼Œå‰©ä¸‹ä¸¤ä¸ªæ•°ä¸€ä¸ªä»å‰å‘åï¼Œä¸€ä¸ªä»åå‘å‰èµ°ï¼Œ
+ * å¦‚æœsumçš„å€¼å°äºtargetäº†ï¼Œåˆ™å‰é¢çš„å‘åä¸€æ­¥ï¼Œå¦‚æœsumçš„å€¼å¤§äº†ï¼Œåˆ™åé¢çš„å‘å‰ï¼Œå¦‚æœsumå€¼ä¸å¤§ä¸å°åˆšå¥½ç­‰äºtargetï¼Œåˆ™ç›´æ¥è¿”å›ç»“æœsum
+ * ä¸è®ºæ˜¯å‘å‰èµ°è¿˜æ˜¯å‘åèµ°ï¼Œå¦‚æœå‘ç°è®°å½•çš„closestDistæ›´å°äº†ï¼Œå°±ç«‹åˆ»æ›´æ–°ç»“æœï¼Œæœ€ååœ¨æ•´ä¸ªå¾ªç¯ç»“æŸåè¿”å›result
  */
 
 public class Solution {
 
-    public int threeSumClosest(int[] nums, int target) {
-    	int closestDist = Integer.MAX_VALUE;
-    	int result = 0;
-    	Arrays.sort(nums);
-        for(int i = 0; i < nums.length; i++){
-        	//Èç¹ûÊÇ -4 -4 1 2 ÕâÖÖÇé¿ö£¬ÄÇÃ´Ç°Ò»´Î¼ÆËã-4µÄÊ±ºòÆäÊµÒÑ¾­°üº¬ÁËµÚ¶ş´ÎÓö¼û-4µÄÊ±ºòµÄÇé¿ö£¬ËùÒÔ²»ÀË·ÑÊ±¼ä£¬¹û¶ÏÌø¹ı
-        	if(i > 0 && nums[i] == nums[i-1]) continue;
-        	
-        	int j = i + 1;
-        	int k = nums.length - 1;
-        	while(j < k){
-	        	int sum = nums[i] + nums[j] + nums[k];
-	        	if(sum < target){
-	        		//Èç¹ûsumĞ¡£¬ÇÒµ±Ç°µÄÎ»ÖÃ¸ü½Ó½ütargetÁË£¬Ôò¸üĞÂ
-	        		if(target - sum < closestDist){
-	        			closestDist = target - sum;
-	        			result = sum;
-	        		}
-	        		j++;
-	        	}
-	        	else if(sum > target){
-	        		if(sum - target < closestDist){
-	        			closestDist = sum - target;
-	        			result = sum;
-	        		}
-	        		k--;
-	        	}
-	        	else{
-	        		return sum;
-	        	}
-        	}
-        }
-        return result;
-    }
-	
+	public int threeSumClosest(int[] nums, int target) {
+		int closestDist = Integer.MAX_VALUE;
+		int result = 0;
+		Arrays.sort(nums);
+		for(int i = 0; i < nums.length; i++){
+			//å¦‚æœæ˜¯ -4 -4 1 2 è¿™ç§æƒ…å†µï¼Œé‚£ä¹ˆå‰ä¸€æ¬¡è®¡ç®—-4çš„æ—¶å€™å…¶å®å·²ç»åŒ…å«äº†ç¬¬äºŒæ¬¡é‡è§-4çš„æ—¶å€™çš„æƒ…å†µï¼Œæ‰€ä»¥ä¸æµªè´¹æ—¶é—´ï¼Œæœæ–­è·³è¿‡
+			if(i > 0 && nums[i] == nums[i-1]) continue;
+
+			int j = i + 1;
+			int k = nums.length - 1;
+			while(j < k){
+				int sum = nums[i] + nums[j] + nums[k];
+				if(sum < target){
+					//å¦‚æœsumå°ï¼Œä¸”å½“å‰çš„ä½ç½®æ›´æ¥è¿‘targetäº†ï¼Œåˆ™æ›´æ–°
+					if(target - sum < closestDist){
+						closestDist = target - sum;
+						result = sum;
+					}
+					j++;
+				}
+				else if(sum > target){
+					if(sum - target < closestDist){
+						closestDist = sum - target;
+						result = sum;
+					}
+					k--;
+				}
+				else{
+					return sum;
+				}
+			}
+		}
+		return result;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int nums[] = {-4, -1, 1, 2};

@@ -1,10 +1,6 @@
 package FourSum;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 /*
  * Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
 
@@ -21,55 +17,55 @@ A solution set is:
  */
 
 /**
- * 
+ *
  * @author DC
- * ¶àĞÂÏÊ°¡£¬ÆäÊµÃ»É¶ÄÑµÄ£¬¾ÍÊÇ±È3Sum¶àÁËÒ»Î¬£¬¼ÓÒ»²ãÑ­»·±©Á¦¸ã¶¨¾Í¿ÉÒÔÁË
- * 3SumµÄÊ±ºò¾ÍÊÇ°´×¡Ò»¸ö²»¶¯£¬È»ºóÆäÓàÁ½¸ö´ÓÇ°Íùºó£¬´ÓºóÍùÇ°ÒÆ¶¯£¨¸ù¾İSumºÍtargetµÄ¶Ô±È¹ØÏµ£¬×¢ÒâÏÈÒªÅÅĞò£©
- * ±È½ÏÓĞÈ¤µÄÊÇÈ¥ÖØÕâÀïÓÃÁËÒ»¸öSet£¬ÕâÀï»áÖ´ĞĞListµÄ¶Ô±Èº¯Êıequals£¬ListµÄÕâ¸öº¯Êı»á·Ö±ğ¶Ô±ÈÀïÃæµÄÃ¿Ò»¸öÔªËØ£¬ÕâÀïÒª×¢Òâ
+ * å¤šæ–°é²œå•Šï¼Œå…¶å®æ²¡å•¥éš¾çš„ï¼Œå°±æ˜¯æ¯”3Sumå¤šäº†ä¸€ç»´ï¼ŒåŠ ä¸€å±‚å¾ªç¯æš´åŠ›æå®šå°±å¯ä»¥äº†
+ * 3Sumçš„æ—¶å€™å°±æ˜¯æŒ‰ä½ä¸€ä¸ªä¸åŠ¨ï¼Œç„¶åå…¶ä½™ä¸¤ä¸ªä»å‰å¾€åï¼Œä»åå¾€å‰ç§»åŠ¨ï¼ˆæ ¹æ®Sumå’Œtargetçš„å¯¹æ¯”å…³ç³»ï¼Œæ³¨æ„å…ˆè¦æ’åºï¼‰
+ * æ¯”è¾ƒæœ‰è¶£çš„æ˜¯å»é‡è¿™é‡Œç”¨äº†ä¸€ä¸ªSetï¼Œè¿™é‡Œä¼šæ‰§è¡ŒListçš„å¯¹æ¯”å‡½æ•°equalsï¼ŒListçš„è¿™ä¸ªå‡½æ•°ä¼šåˆ†åˆ«å¯¹æ¯”é‡Œé¢çš„æ¯ä¸€ä¸ªå…ƒç´ ï¼Œè¿™é‡Œè¦æ³¨æ„
  */
 public class Solution {
-    public List<List<Integer>> fourSum(int[] nums, int target) {
-    	Arrays.sort(nums);
-    	List<List<Integer>> result = new ArrayList<>();
-    	Set<List<Integer>> nodouble = new HashSet<>();
-        for(int i = 0; i < nums.length-3; i++){
-        	for(int j = i + 1; j < nums.length-2; j++){
-        		int start = j + 1;
-        		int end = nums.length-1;
-        		while(start < end){
-	        		int sum = nums[i] + nums[j] + nums[start] + nums[end];
-	        		if(sum == target){
-	        			List<Integer> list = new ArrayList<>();
-	        			list.add(nums[i]);
-	        			list.add(nums[j]);
-	        			list.add(nums[start]);
-	        			list.add(nums[end]);
-	        			//ListµÄ±È½Ïequalº¯Êı»á¶ÔÀïÃæÃ¿Ò»¸öÔªËØ½øĞĞ±È½Ï
-	        			if(!nodouble.contains(list)){
-	        				result.add(list);
-	        				nodouble.add(list);
-	        			}
-	        			start++;
-	        			end--;
-	        			continue;
-	        		}
-	        		else{
-	        			if(sum < target){
-	        				start++;
-	        				continue;
-	        			}
-	        			if(sum > target){
-	        				end--;
-	        				continue;
-	        			}
-	        		}
-        		}
-        	}
-        }
-        return result;
-    }
-    
-    public static void main(String[] args) {
+	public List<List<Integer>> fourSum(int[] nums, int target) {
+		Arrays.sort(nums);
+		List<List<Integer>> result = new ArrayList<>();
+		Set<List<Integer>> nodouble = new HashSet<>();
+		for(int i = 0; i < nums.length-3; i++){
+			for(int j = i + 1; j < nums.length-2; j++){
+				int start = j + 1;
+				int end = nums.length-1;
+				while(start < end){
+					int sum = nums[i] + nums[j] + nums[start] + nums[end];
+					if(sum == target){
+						List<Integer> list = new ArrayList<>();
+						list.add(nums[i]);
+						list.add(nums[j]);
+						list.add(nums[start]);
+						list.add(nums[end]);
+						//Listçš„æ¯”è¾ƒequalå‡½æ•°ä¼šå¯¹é‡Œé¢æ¯ä¸€ä¸ªå…ƒç´ è¿›è¡Œæ¯”è¾ƒ
+						if(!nodouble.contains(list)){
+							result.add(list);
+							nodouble.add(list);
+						}
+						start++;
+						end--;
+						continue;
+					}
+					else{
+						if(sum < target){
+							start++;
+							continue;
+						}
+						if(sum > target){
+							end--;
+							continue;
+						}
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+	public static void main(String[] args) {
 		int s[] = {-3,-2,-1,0,0,1,2,3};
 		Solution solution = new Solution();
 		List<List<Integer>> result = solution.fourSum(s, 0);
